@@ -1,4 +1,4 @@
-<img width="327" height="156" alt="image" src="https://github.com/user-attachments/assets/2c5d2bb4-893b-4f7b-81fc-71cb4c0d1b44" />  # Fear & Greed Index – Rainmeter Skin
+# Fear & Greed Index – Rainmeter Skin
   ![preview](screenshot.png)
   A modern glassmorphism Rainmeter skin that displays the **Crypto Fear & Greed Index** with a 7-day history bar chart.
   ## Features
