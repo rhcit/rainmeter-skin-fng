@@ -1,0 +1,273 @@
+[Rainmeter]
+Update=1000
+AccurateText=1
+DynamicWindowSize=1
+SkinWidth=320
+SkinHeight=150
+
+[Variables]
+PanelColor=20,20,30,210
+AccentColor=100,140,255
+AccentColorDim=100,140,255,80
+TextPrimary=240,240,250,255
+TextSecondary=160,165,190,200
+DividerColor=255,255,255,25
+BarColor=100,140,255,160
+BarTrack=255,255,255,8
+CardRadius=12
+PanelW=320
+PanelH=150
+
+; ============================================================
+;  BACKGROUND
+; ============================================================
+
+[MeterPanel]
+Meter=Shape
+Shape=Rectangle 0,0,#PanelW#,#PanelH#,#CardRadius# | Fill Color #PanelColor# | StrokeWidth 1 | Stroke Color 255,255,255,18
+Shape2=Rectangle 1,1,(#PanelW#-2),(#PanelH#-2),#CardRadius# | Fill Color 0,0,0,0 | StrokeWidth 0.5 | Stroke Color #AccentColorDim#
+
+; ============================================================
+;  HEADER
+; ============================================================
+
+[MeterIcon]
+Meter=String
+X=14
+Y=12
+FontFace=Segoe Fluent Icons
+FontSize=18
+FontColor=#AccentColor#
+AntiAlias=1
+Text=[\xE9D9]
+
+[MeterTitle]
+Meter=String
+X=43
+Y=12
+FontFace=Segoe UI Variable Display
+FontSize=12
+FontWeight=600
+FontColor=#TextPrimary#
+AntiAlias=1
+Text=Fear & Greed
+
+[MeasureTime]
+;Measure=Time
+;Format=%H:%M:%S
+
+[MeterTime]
+Meter=String
+MeasureName=MeasureTime
+X=(#PanelW#-14)
+Y=14
+FontFace=Segoe UI Variable Text
+FontSize=8
+FontWeight=400
+FontColor=#TextSecondary#
+StringAlign=Right
+AntiAlias=1
+
+; ============================================================
+;  DIVIDER
+; ============================================================
+
+[MeterDivider]
+Meter=Shape
+X=14
+Y=40
+Shape=Rectangle 0,0,(#PanelW#-28),1 | Fill Color #DividerColor# | StrokeWidth 0
+
+; ============================================================
+;  WEB PARSER  –  7 days of data
+; ============================================================
+
+[MeasureIndex]
+Measure=WebParser
+URL=https://api.alternative.me/fng/?limit=7
+RegExp=(?siU)"value": "(.*)".*"value_classification": "(.*)".*"value": "(.*)".*"value": "(.*)".*"value": "(.*)".*"value": "(.*)".*"value": "(.*)".*"value": "(.*)"
+UpdateRate=600
+LogSubstringErrors=0
+
+[MeasureFGI]
+Measure=WebParser
+URL=[MeasureIndex]
+StringIndex=1
+MinValue=0
+MaxValue=100
+IfCondition=MeasureFGI < 25
+IfTrueAction=[!SetOption MeterFGIValue FontColor "235,87,87,255"][!UpdateMeter MeterFGIValue][!Redraw]
+IfCondition2=(MeasureFGI >= 25) && (MeasureFGI < 50)
+IfTrueAction2=[!SetOption MeterFGIValue FontColor "242,153,74,255"][!UpdateMeter MeterFGIValue][!Redraw]
+IfCondition3=(MeasureFGI >= 50) && (MeasureFGI < 75)
+IfTrueAction3=[!SetOption MeterFGIValue FontColor "130,202,157,255"][!UpdateMeter MeterFGIValue][!Redraw]
+IfCondition4=MeasureFGI >= 75
+IfTrueAction4=[!SetOption MeterFGIValue FontColor "39,174,96,255"][!UpdateMeter MeterFGIValue][!Redraw]
+
+[MeasureClassification]
+Measure=WebParser
+URL=[MeasureIndex]
+StringIndex=2
+
+[MeasureDay2]
+Measure=WebParser
+URL=[MeasureIndex]
+StringIndex=3
+MinValue=0
+MaxValue=100
+
+[MeasureDay3]
+Measure=WebParser
+URL=[MeasureIndex]
+StringIndex=4
+MinValue=0
+MaxValue=100
+
+[MeasureDay4]
+Measure=WebParser
+URL=[MeasureIndex]
+StringIndex=5
+MinValue=0
+MaxValue=100
+
+[MeasureDay5]
+Measure=WebParser
+URL=[MeasureIndex]
+StringIndex=6
+MinValue=0
+MaxValue=100
+
+[MeasureDay6]
+Measure=WebParser
+URL=[MeasureIndex]
+StringIndex=7
+MinValue=0
+MaxValue=100
+
+[MeasureDay7]
+Measure=WebParser
+URL=[MeasureIndex]
+StringIndex=8
+MinValue=0
+MaxValue=100
+
+; ============================================================
+;  LEFT SIDE  –  FGI value + classification
+; ============================================================
+
+[MeterFGIValue]
+Meter=String
+MeasureName=MeasureFGI
+X=85
+Y=40
+FontFace=Segoe UI Variable Display
+FontSize=50
+FontWeight=700
+FontColor=#AccentColor#
+StringAlign=Center
+AntiAlias=1
+
+[MeterClassification]
+Meter=String
+MeasureName=MeasureClassification
+X=85
+Y=114
+FontFace=Segoe UI Variable Text
+FontSize=9
+FontWeight=400
+FontColor=#TextSecondary#
+StringAlign=Center
+AntiAlias=1
+
+; ============================================================
+;  RIGHT SIDE  –  7-day bar chart (oldest → newest)
+; ============================================================
+
+[MeterBar1]
+Meter=Bar
+MeasureName=MeasureDay7
+X=175
+Y=48
+W=14
+H=80
+BarColor=#BarColor#
+BarOrientation=Vertical
+SolidColor=#BarTrack#
+
+[MeterBar2]
+Meter=Bar
+MeasureName=MeasureDay6
+X=192
+Y=48
+W=14
+H=80
+BarColor=#BarColor#
+BarOrientation=Vertical
+SolidColor=#BarTrack#
+
+[MeterBar3]
+Meter=Bar
+MeasureName=MeasureDay5
+X=209
+Y=48
+W=14
+H=80
+BarColor=#BarColor#
+BarOrientation=Vertical
+SolidColor=#BarTrack#
+
+[MeterBar4]
+Meter=Bar
+MeasureName=MeasureDay4
+X=226
+Y=48
+W=14
+H=80
+BarColor=#BarColor#
+BarOrientation=Vertical
+SolidColor=#BarTrack#
+
+[MeterBar5]
+Meter=Bar
+MeasureName=MeasureDay3
+X=243
+Y=48
+W=14
+H=80
+BarColor=#BarColor#
+BarOrientation=Vertical
+SolidColor=#BarTrack#
+
+[MeterBar6]
+Meter=Bar
+MeasureName=MeasureDay2
+X=260
+Y=48
+W=14
+H=80
+BarColor=#BarColor#
+BarOrientation=Vertical
+SolidColor=#BarTrack#
+
+[MeterBar7]
+Meter=Bar
+MeasureName=MeasureFGI
+X=277
+Y=48
+W=14
+H=80
+BarColor=#BarColor#
+BarOrientation=Vertical
+SolidColor=#BarTrack#
+
+[MeterChartLabel]
+Meter=String
+X=226
+Y=132
+FontFace=Segoe UI Variable Text
+FontSize=7
+FontWeight=400
+FontColor=#TextSecondary#
+StringAlign=Center
+AntiAlias=1
+Text=7d
