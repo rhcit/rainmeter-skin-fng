@@ -1,4 +1,4 @@
-  # Fear & Greed Index – Rainmeter Skin
+<img width="327" height="156" alt="image" src="https://github.com/user-attachments/assets/2c5d2bb4-893b-4f7b-81fc-71cb4c0d1b44" />  # Fear & Greed Index – Rainmeter Skin
   ![preview](screenshot.png)
   A modern glassmorphism Rainmeter skin that displays the **Crypto Fear & Greed Index** with a 7-day history bar chart.
   ## Features
@@ -11,11 +11,17 @@
   - [Rainmeter 4.0+](https://www.rainmeter.net/)
   - Fonts: Segoe UI Variable, Segoe Fluent Icons, Cascadia Code (included with Windows 11)
   - Internet connection
-  ## Installation
+  
+  ## Easy Installation
+  Just download FearAndGreed_v1.rmskin file and double click it.
+  
+  ## Manual Installation
   1. Download or clone this repo
   2. Copy the `FearGreed` folder to `Documents\Rainmeter\Skins\`
   3. Right-click the Rainmeter tray icon → **Manage Skins**
   4. Navigate to `FearGreed\FearGreed.ini` → **Load**
+  
+  
   ## Configuration
   Edit the `[Variables]` section in `FearGreed.ini`:
   | Variable | Default | Description |
