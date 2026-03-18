@@ -6,7 +6,7 @@
   - Dynamic color-coded value (red → orange → green)
   - 7-day history bar chart
   - Sentiment classification label
-  - Live clock
+
   ## Requirements
   - [Rainmeter 4.0+](https://www.rainmeter.net/)
   - Fonts: Segoe UI Variable, Segoe Fluent Icons, Cascadia Code (included with Windows 11)
